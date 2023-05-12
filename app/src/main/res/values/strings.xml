@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">helper 2.0</string>
+    <string-array name="Variants">
+        <item>первый вариант</item>
+        <item>второй вариант</item>
+        <item>третий вариант</item>
+        <item>четвертый вариант</item>
+        <item>пятый вариант</item>
+
+    </string-array>
+</resources>
