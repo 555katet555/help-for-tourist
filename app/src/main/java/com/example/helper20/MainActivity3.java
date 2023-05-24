@@ -66,6 +66,7 @@ public class MainActivity3 extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               // Toast.makeText(getApplicationContext(), "F", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 activityResultLauncher.launch(intent);
@@ -77,13 +78,15 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View view) {
                 ByteArrayOutputStream byteArrayOutputStream;
                 byteArrayOutputStream = new ByteArrayOutputStream();
+                //Toast.makeText(getApplicationContext(), "F", Toast.LENGTH_SHORT).show();
                 if(bitmap != null)
                 {
+                    //Toast.makeText(getApplicationContext(), "Сначала выберите фото", Toast.LENGTH_SHORT).show();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
                     final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    String url = "";
+                    String url = "https://requestinspector.com/inspect/01h16sjw1g2dp2c5xz3t182jj9";
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                             new Response.Listener<String>() {
