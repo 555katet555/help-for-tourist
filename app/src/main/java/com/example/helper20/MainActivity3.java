@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.media.MediaParser;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import java.util.Map;
 
 public class MainActivity3 extends AppCompatActivity {
 
+
     Bitmap bitmap;
 
     @Override
@@ -43,6 +45,14 @@ public class MainActivity3 extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.click_to_upld_img);
         Button button = findViewById(R.id.btn_upld);
+        Button btn_home = (Button) findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(MainActivity3.this, MainActivityfinal.class);
+                startActivity(intent1);
+            }
+        });
 
         ActivityResultLauncher<Intent> activityResultLauncher =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -84,9 +94,10 @@ public class MainActivity3 extends AppCompatActivity {
                     //Toast.makeText(getApplicationContext(), "Сначала выберите фото", Toast.LENGTH_SHORT).show();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
-                    final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    //final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    final String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    String url = "https://requestinspector.com/inspect/01h16sjw1g2dp2c5xz3t182jj9";
+                    String url = "https://requestinspector.com/inspect/01h1pddw71qmxxz8vp5808he2t";
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                             new Response.Listener<String>() {
@@ -106,7 +117,7 @@ public class MainActivity3 extends AppCompatActivity {
                     }){
                         protected Map<String, String> getParams(){
                             Map<String, String> paramV = new HashMap<>();
-                            paramV.put("image", base64Image);
+                            paramV.put("image", /*base64Image*/ encodedImage);
                             return paramV;
                         }
                     };
