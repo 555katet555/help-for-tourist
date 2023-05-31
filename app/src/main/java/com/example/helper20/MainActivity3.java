@@ -91,11 +91,16 @@ public class MainActivity3 extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "F", Toast.LENGTH_SHORT).show();
                 if(bitmap != null)
                 {
+                    /*int w = bitmap.getWidth();
+                    int h = bitmap.getHeight();
+                    int halfw = w/2;
+                    int halfh = h/2;
+                    bitmap = Bitmap.createScaledBitmap(bitmap, halfw, halfh, false);*/
                     //Toast.makeText(getApplicationContext(), "Сначала выберите фото", Toast.LENGTH_SHORT).show();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
-                    //final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    final String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+                    final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    //final String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     String url = "https://requestinspector.com/inspect/01h1pddw71qmxxz8vp5808he2t";
 
@@ -115,9 +120,10 @@ public class MainActivity3 extends AppCompatActivity {
 
                         }
                     }){
-                        protected Map<String, String> getParams(){
+                        //Uri selectedImage = encodedImage.getData();
+                       protected Map<String, String> getParams(){
                             Map<String, String> paramV = new HashMap<>();
-                            paramV.put("image", /*base64Image*/ encodedImage);
+                            paramV.put("image", base64Image);
                             return paramV;
                         }
                     };
