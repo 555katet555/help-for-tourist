@@ -91,11 +91,11 @@ public class MainActivity3 extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "F", Toast.LENGTH_SHORT).show();
                 if(bitmap != null)
                 {
-                    /*int w = bitmap.getWidth();
+                    int w = bitmap.getWidth();
                     int h = bitmap.getHeight();
                     int halfw = w/2;
                     int halfh = h/2;
-                    bitmap = Bitmap.createScaledBitmap(bitmap, halfw, halfh, false);*/
+                    bitmap = Bitmap.createScaledBitmap(bitmap, halfw, halfh, false);
                     //Toast.makeText(getApplicationContext(), "Сначала выберите фото", Toast.LENGTH_SHORT).show();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     byte[] bytes = byteArrayOutputStream.toByteArray();
