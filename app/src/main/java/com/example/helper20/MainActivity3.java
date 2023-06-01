@@ -18,6 +18,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,13 +28,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity3 extends AppCompatActivity {
+
+    //ListView listView;
+    //ArrayList<JSONObject> infoList;
 
 
     Bitmap bitmap;
@@ -49,8 +57,12 @@ public class MainActivity3 extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(MainActivity3.this, MainActivityfinal.class);
-                startActivity(intent1);
+               // String name = optString("name");
+
+                Intent intent = new Intent(MainActivity3.this, MainActivityfinal.class);
+                //intent.putExtra(name);
+                startActivity(intent);
+
             }
         });
 
@@ -102,7 +114,7 @@ public class MainActivity3 extends AppCompatActivity {
                     final  String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
                     //final String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    String url = "https://requestinspector.com/inspect/01h1pddw71qmxxz8vp5808he2t";
+                    String url = "http://92.63.106.150:5000/api/recognize";
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                             new Response.Listener<String>() {
